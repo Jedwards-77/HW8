@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Info</title>
+</head>
+<body>
+    <h1>Pokemon Sizes!</h1>
+    <input type="number" id="pokemon-id" min="1" max="151" value="50">
+    <button onclick="fetchPokemon()">Get Info</button>
+    <div id="result"></div>
+
+    <script>
+    function fetchPokemon() {
+    const id = document.getElementById('pokemon-id').value;
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('result').innerHTML = `
+            <h2>${data.name}</h2>
+            <p>Height: ${data.height / 10} m</p>
+            <p>Weight: ${data.weight / 10} kg</p>`;
+        });
+    }
+    </script>
+    <br>
+    <p>
+    The api I selected gives all of the information of a pokemon
+    based on the id number or name entered.
+    <br><br>
+    I found this API on Medium.com's 15 fun and interesting APIs in 2022. https://medium.com/codex/15-fun-and-interesting-apis-to-use-for-your-next-coding-project-in-2022-86a4ff3a2742
+    <br><br>
+    The parameters for the API request are identification methods for pokemon which in this api is either the name or its id number
+    <br><br>
+    This API would be helpful in a pokemon quiz and pokemon search application
+    </p>
+
+</body>
+</html>
